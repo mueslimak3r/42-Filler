@@ -32,4 +32,8 @@ typedef struct  s_move
     struct move *next;
 }               t_move;
 
+int     makemap(t_data *data);
+int     makepiece(t_data *data);
+int     getgridsize(int *y, int *x);
+
 #endif

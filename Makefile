@@ -12,7 +12,7 @@
 
 NAME = calamber
 
-SRC = main.c
+SRC = main.c makedata.c
 
 OBJ = $(SRC:.c=.o)
 
@@ -24,7 +24,8 @@ INC = -I includes
 
 CC = gcc
 
-FLAGS = -Wall -Wextra -Werror -g
+FLAGS = -Wall -Wextra -Werror -g -fsanitize=address
+
 all: $(NAME)
 
 $(NAME): $(OBJ)
