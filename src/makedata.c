@@ -1,6 +1,6 @@
 #include "../includes/filler.h"
 
-int     getgridsize(int *y, int *x)
+static int     getgridsize(int *y, int *x)
 {
     char *line;
     char *backup;
@@ -16,7 +16,7 @@ int     getgridsize(int *y, int *x)
     return (1);
 }
 
-int     makepiece(t_data *data)
+static int     makepiece(t_data *data)
 {
     char    *line;
     int     y;
@@ -30,18 +30,18 @@ int     makepiece(t_data *data)
     while (get_next_line(0, &line) > 0)
     {
         (data->piece.piece)[y] = line;
-        //ft_printf("y: %-4d | %s\n", y, (data->piece.piece)[y]);
+        ft_printf("y: %-4d | %s\n", y, (data->piece.piece)[y]);
         data->piece.y_begin = (ft_strchr(line, '*') >= line && (y < data->piece.y_begin || data->piece.y_begin == -1)) ?
                                 y : data->piece.y_begin;
         data->piece.x_begin = (ft_strchr(line, '*') >= line && ((ft_strchr(line, '*') - line) < data->piece.x_begin || data->piece.x_begin == -1)) ?
                                 (ft_strchr(line, '*') - line) : data->piece.x_begin;
         y++;
     }
-    //ft_printf("startx: %d starty: %d\n", data->piece.x_begin, data->piece.y_begin);
+    ft_printf("startx: %d starty: %d\n", data->piece.x_begin, data->piece.y_begin);
     return (1);
 }
 
-int     makemap(t_data *data)
+static int     makemap(t_data *data)
 {
     char    *line;
     int     y;
@@ -59,8 +59,21 @@ int     makemap(t_data *data)
     {
         (data->map.map)[y] = ft_strdup(line + 4);
         ft_strdel(&line);
-        //ft_printf("y: %-4d | %s\n", y, (data->map.map)[y]);
+        ft_printf("y: %-4d | %s\n", y, (data->map.map)[y]);
         y++;
     }
+    return (1);
+}
+
+int     getdata(t_data *data)
+{
+    if (!(getgridsize(&(data->map.y_size), &(data->map.x_size))))
+        return (print_return("error getting map size\n", 0, 2));
+    if (!(makemap(data)))
+        return (print_return("error making map\n", 0, 2));
+    if (!(getgridsize(&(data->piece.y_size), &(data->piece.x_size))))
+        return (print_return("error getting piece size\n", 0, 2));
+    if (!(makepiece(data)))
+        return (print_return("error making piece\n", 0, 2));
     return (1);
 }

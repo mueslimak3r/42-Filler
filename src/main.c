@@ -15,26 +15,13 @@ void    clearstructs(t_data *data)
     data->piece.y_begin = -1;
 }
 
-int     getdata(t_data *data)
-{
-    if (!(getgridsize(&(data->map.y_size), &(data->map.x_size))))
-        return (print_return("error getting map size\n", 0, 2));
-    if (!(makemap(data)))
-        return (print_return("error making map\n", 0, 2));
-    if (!(getgridsize(&(data->piece.y_size), &(data->piece.x_size))))
-        return (print_return("error getting piece size\n", 0, 2));
-    if (!(makepiece(data)))
-        return (print_return("error making piece\n", 0, 2));
-    return (1);
-}
-
 void    freeit(t_data *data)
 {
     ft_arraydel(data->map.map);
     ft_arraydel(data->piece.piece);
 }
 
-int     filler_loop(void)
+int     filler_loop(int playern, char c)
 {
     t_data data;
     t_move *moves;
@@ -43,18 +30,25 @@ int     filler_loop(void)
     clearstructs(&data);
     if (!(getdata(&data)))
         return(1);
+    data.playern = playern;
+    data.c = c;
+    solve(&data);
     freeit(&data);
-    //findmoves(&moves);
-    //printmove(moves);
     return (1);
 }
 
-int     main(void)
+int         main(void)
 {
-    int quit;
+    int     quit;
+    char    *pinfo;
+    int     playern;
 
+    get_next_line(0, &pinfo);
+    if (!pinfo[10] || (pinfo[10] != '1' && pinfo[10] != '2'))
+		return (ft_error("error about player position"));
+    playern = pinfo[10] - '0';
     quit = 0;
     while (!quit)
-        quit = filler_loop();
+        quit = filler_loop(playern, (playern == 1) ? 'o' : 'x');
     return (0);
 }

@@ -23,6 +23,8 @@ typedef struct  s_data
 {
     t_map       map;
     t_piece     piece;
+    int         playern;
+    char        c;
 }               t_data;
 
 typedef struct  s_move
@@ -32,8 +34,8 @@ typedef struct  s_move
     struct move *next;
 }               t_move;
 
-int     makemap(t_data *data);
-int     makepiece(t_data *data);
-int     getgridsize(int *y, int *x);
+int     getdata(t_data *data);
+int     print_return(char *note, int ret, int fd);
+void    solve(t_data *data);
 
 #endif
