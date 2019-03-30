@@ -17,11 +17,11 @@ void	ft_arraydel(char **array)
 	char	**temp;
 
 	temp = array;
-	while (*array)
+	while (*temp)
 	{
-		ft_strdel(&(*array));
-		array++;
+		ft_strdel(&(*temp));
+		temp++;
 	}
-	if (temp)
-		free(temp);
+	if (array)
+		free(array);
 }

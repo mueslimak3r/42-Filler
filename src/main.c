@@ -36,7 +36,7 @@ int     makemap(t_data *data)
 
     line = 0;
     y = 0;
-    if (!(data->map.map = ft_memalloc(sizeof(char) *
+    if (!(data->map.map = ft_memalloc(sizeof(char*) *
                         (data->map.y_size + 1))))
         return (0);
     if ((get_next_line(0, &line)) < 0)
@@ -44,21 +44,20 @@ int     makemap(t_data *data)
     ft_strdel(&line);
     while (get_next_line(0, &line) > 0)
     {
-        if (ft_strlen(line) > 4)
-            (data->map.map)[y] = ft_strdup(line + 4);
-        //ft_strdel(&line);
-        ft_printf("%s\n", (data->map.map)[y]);
+        (data->map.map)[y] = ft_strdup(line + 4);
+        ft_printf("y: %d | %s\n", y, (data->map.map)[y]);
+        ft_strdel(&line);
         y++;
     }
-    return (0);
+    return (1);
 }
 
 int     getdata(t_data *data)
 {
     if (!(getmapsize(data)))
-        return (1);
+        return (print_return("error getting map\n", 0, 2));
     if (!(makemap(data)))
-        return (1);
+        return (print_return("error making map\n", 0, 2));
     return (1);
 }
 
@@ -77,7 +76,7 @@ int     filler_loop(void)
     moves = 0;
     clearstructs(&data);
     if (!(getdata(&data)))
-        return(print_return("error getting map and piece", 0, 2));
+        return(1);
     freeit(&data);
     //findmoves(&moves);
     //printmove(moves);
@@ -91,5 +90,7 @@ int     main(void)
     quit = 0;
     while (!quit)
         quit = filler_loop();
+    while (1)
+        ;
     return (0);
 }
