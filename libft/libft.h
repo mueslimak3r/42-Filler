@@ -93,5 +93,6 @@ char				*ft_makepath(char *s1, char *s2, char c);
 char				*ft_strndup(const char *src, size_t len);
 int					ft_returnfree(char **ptr, int ret);
 char				*ft_readstdin_line(void);
+int					ft_checkifc(char in, char c);
 
 #endif

@@ -21,17 +21,53 @@ void    freeit(t_data *data)
     ft_arraydel(data->piece.piece);
 }
 
+void    printit(char **c)
+{
+    int size;
+    int i = 0;
+    int b;
+    int y;
+    y = -1;
+    size = ft_strlen(*c);
+    ft_printf("    ");
+    while(i < size)
+    {
+        b = -1;
+        while (i < size && ++b < 10)
+        {
+            ft_printf("%d", b);
+            i++;
+        }
+    }
+    ft_printf("\n");
+    while (c[++y])
+    {
+        ft_printf("%3d %s\n", y, c[y]);
+    }
+    i = 0;
+    ft_printf("    ");
+    while(i < size)
+    {
+        b = -1;
+        while (i < size && ++b < 10)
+        {
+            ft_printf("%d", b);
+            i++;
+        }
+    }
+    ft_printf("\n");
+}
+
 int     filler_loop(int playern, char c)
 {
     t_data data;
-    t_move *moves;
 
-    moves = 0;
     clearstructs(&data);
     if (!(getdata(&data)))
         return(1);
     data.playern = playern;
     data.c = c;
+    printit(data.map.map);
     solve(&data);
     freeit(&data);
     return (1);
@@ -45,8 +81,12 @@ int         main(void)
 
     get_next_line(0, &pinfo);
     if (!pinfo[10] || (pinfo[10] != '1' && pinfo[10] != '2'))
-		return (ft_error("error about player position"));
+    {
+        ft_strdel(&pinfo);
+		return (print_return("error about player position", 0, 2));
+    }
     playern = pinfo[10] - '0';
+    ft_strdel(&pinfo);
     quit = 0;
     while (!quit)
         quit = filler_loop(playern, (playern == 1) ? 'o' : 'x');

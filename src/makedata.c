@@ -37,7 +37,6 @@ static int     makepiece(t_data *data)
                                 (ft_strchr(line, '*') - line) : data->piece.x_begin;
         y++;
     }
-    ft_printf("startx: %d starty: %d\n", data->piece.x_begin, data->piece.y_begin);
     return (1);
 }
 
@@ -52,6 +51,7 @@ static int     makemap(t_data *data)
     if (!(data->map.map = ft_memalloc(sizeof(char*) *
                         (data->map.y_size + 1))))
         return (0);
+    ft_printf("size: x: %d y: %d\n", data->map.x_size, data->map.y_size);
     if ((get_next_line(0, &line)) < 0)
         return (0);
     ft_strdel(&line);
@@ -59,7 +59,6 @@ static int     makemap(t_data *data)
     {
         (data->map.map)[y] = ft_strdup(line + 4);
         ft_strdel(&line);
-        ft_printf("y: %-4d | %s\n", y, (data->map.map)[y]);
         y++;
     }
     return (1);
