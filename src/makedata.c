@@ -1,6 +1,6 @@
 #include "../includes/filler.h"
 
-static int     getgridsize(int *y, int *x)
+int     getgridsize(int *y, int *x)
 {
     char *line;
     char *backup;
@@ -16,7 +16,7 @@ static int     getgridsize(int *y, int *x)
     return (1);
 }
 
-static int     makepiece(t_data *data)
+int     makepiece(t_data *data)
 {
     char    *line;
     int     y;
@@ -26,7 +26,7 @@ static int     makepiece(t_data *data)
     if (!(data->piece.piece = ft_memalloc(sizeof(char*) *
                         (data->piece.y_size + 1))))
         return (0);
-    
+
     while (get_next_line(0, &line) > 0)
     {
         (data->piece.piece)[y] = line;
@@ -40,7 +40,7 @@ static int     makepiece(t_data *data)
     return (1);
 }
 
-static int     makemap(t_data *data)
+int     makemap(t_data *data)
 {
     char    *line;
     int     y;

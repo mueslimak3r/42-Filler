@@ -79,6 +79,7 @@ int         main(void)
     char    *pinfo;
     int     playern;
 
+    pinfo = 0;
     get_next_line(0, &pinfo);
     if (!pinfo[10] || (pinfo[10] != '1' && pinfo[10] != '2'))
     {

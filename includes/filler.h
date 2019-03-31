@@ -27,12 +27,12 @@ typedef struct  s_data
     char        c;
 }               t_data;
 
-typedef struct  s_move
+typedef struct      s_move
 {
-    int         x;
-    int         y;
-    struct move *next;
-}               t_move;
+    int             x;
+    int             y;
+    struct s_move   *next;
+}                   t_move;
 
 int     getdata(t_data *data);
 int     print_return(char *note, int ret, int fd);

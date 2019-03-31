@@ -1,5 +1,17 @@
 #include "../includes/filler.h"
 
+void        add_node(t_move **list, int x, int y)
+{
+    t_move  *new;
+
+    if (!(new = ft_memalloc(sizeof(t_move))))
+        return ;
+    new->x = x;
+    new->y = y;
+    new->next = *list;
+    *list = new;
+}
+
 void        check_spot(t_move **list, t_data *data, int in_x, int in_y)
 {
     int     can;
@@ -10,10 +22,6 @@ void        check_spot(t_move **list, t_data *data, int in_x, int in_y)
 
     by = 0;
     can = 0;
-    if (list)
-    {
-        ;
-    }
     y = data->piece.y_begin - 1;
     while ((data->piece.piece)[++y])
     {
@@ -23,8 +31,8 @@ void        check_spot(t_move **list, t_data *data, int in_x, int in_y)
         {
             if ((data->piece.piece)[y][x] == '*')
             {
-                ft_printf("checking: x: %d y: %d | piece: x: %d y: %d\n", in_x + bx, in_y + by, x, y);
-                if (!(data->map.map)[in_y + by][in_x + bx])
+                
+                if (in_y + by >= data->map.y_size || in_x + bx >= data->map.x_size || !(data->map.map)[in_y + by][in_x + bx])
                     return ;
                 if (ft_checkifc((data->map.map)[in_y + by][in_x + bx], data->c))
                     can++;
@@ -34,7 +42,7 @@ void        check_spot(t_move **list, t_data *data, int in_x, int in_y)
         by++;
     }
     if (can == 1)
-        ft_printf("can: x: %d y: %d\n", in_x - data->piece.x_begin, in_y - data->piece.y_begin);
+        add_node(list, in_x - data->piece.x_begin, in_y - data->piece.y_begin);
 }
 
 void        get_moves(t_move **list, t_data *data)
@@ -57,6 +65,11 @@ void        solve(t_data *data)
 
     list = 0;
     get_moves(&list, data);
+    while (list)
+    {
+        ft_printf("x: %d y: %d\n", list->x, list->y);
+        list = list->next;
+    }
     //order_moves(&list);
     //print_move(list);
     //free_list(&list);
