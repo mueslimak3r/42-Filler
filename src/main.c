@@ -29,7 +29,7 @@ void    printit(char **c)
     int y;
     y = -1;
     size = ft_strlen(*c);
-    ft_printf("    ");
+    ft_printf("map to fill:\n    ");
     while(i < size)
     {
         b = -1;
@@ -61,16 +61,17 @@ void    printit(char **c)
 int     filler_loop(int playern, char c)
 {
     t_data data;
+    int     ret;
 
     clearstructs(&data);
-    if (!(getdata(&data)))
-        return(1);
+    if ((ret = getdata(&data)) < 1)
+        return(ret);
     data.playern = playern;
     data.c = c;
-    printit(data.map.map);
+    //printit(data.map.map);
     solve(&data);
     freeit(&data);
-    return (1);
+    return (0);
 }
 
 int         main(void)
@@ -89,7 +90,7 @@ int         main(void)
     playern = pinfo[10] - '0';
     ft_strdel(&pinfo);
     quit = 0;
-    while (!quit)
+    while (quit != -1)
         quit = filler_loop(playern, (playern == 1) ? 'o' : 'x');
     return (0);
 }

@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "libft.h"
+
 /*
 int				strchr_int(const char *s, int c)
 {
@@ -173,3 +174,4 @@ int		get_next_line(const int fd, char **line)
 		return (0);
 	return (ft_new_line(s, line, fd, ret));
 }
+
