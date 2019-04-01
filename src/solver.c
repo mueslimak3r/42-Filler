@@ -15,11 +15,13 @@ void        solve(t_data *data)
 
     list = 0;
     get_moves(&list, data);
-    mergesort_moves(&list);
     //printlist(list);
     if (list)
-        ft_printf("%d %d\n", list->x, list->y);
+    {
+        mergesort_moves(&list);
+        printf("%d %d\n", list->y, list->x);
+    }
     else
-        ft_printf("%d %d\n", 0, 0);
+        printf("%d %d\n", 0, 0);
     free_list(&list);
 }

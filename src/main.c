@@ -81,7 +81,8 @@ int         main(void)
     int     playern;
 
     pinfo = 0;
-    get_next_line(0, &pinfo);
+    if ((get_next_line(0, &pinfo)) < 0)
+        return (0);
     if (!pinfo[10] || (pinfo[10] != '1' && pinfo[10] != '2'))
     {
         ft_strdel(&pinfo);
