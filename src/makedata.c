@@ -13,6 +13,8 @@ int     getgridsize(int *y, int *x)
         //ft_printf("line: %s\n", line);
         while(*line && !ft_isdigit(*line))
             line++;
+        if (!(*line))
+            return (0);
         *y = ft_atoi(line);
         *x = ft_atoi(ft_strchr(line, ' '));
         ft_strdel(&backup);

@@ -93,5 +93,5 @@ int         main(void)
     quit = 0;
     while (quit != -1)
         quit = filler_loop(playern, (playern == 1) ? 'o' : 'x');
-    return (0);
+    return (quit == -1 ? 1 : 0);
 }
