@@ -19,7 +19,8 @@ void        solve(t_data *data)
     if (list)
     {
         mergesort_moves(&list);
-        printf("%d %d\n", list->y, list->x);
+        while (1)
+            printf("%d %d\n", list->y, list->x);
     }
     else
         printf("%d %d\n", 0, 0);

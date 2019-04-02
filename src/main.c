@@ -86,7 +86,7 @@ int         main(void)
     if (ft_strlen(pinfo) < 11 || !pinfo[10] || (pinfo[10] != '1' && pinfo[10] != '2'))
     {
         ft_strdel(&pinfo);
-		return (print_return("error about player position", 0, 2));
+		return (1);
     }
     playern = pinfo[10] - '0';
     ft_strdel(&pinfo);
