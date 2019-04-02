@@ -11,7 +11,7 @@ int     getgridsize(int *y, int *x)
     if (line)
     {
         //ft_printf("line: %s\n", line);
-        while(line && !ft_isdigit(*line))
+        while(*line && !ft_isdigit(*line))
             line++;
         *y = ft_atoi(line);
         if (*y == 0 && *line != '0')
@@ -20,7 +20,6 @@ int     getgridsize(int *y, int *x)
         ft_strdel(&backup);
         return (1);
     }
-    ft_strdel(&backup);
     return (0);
 }
 
@@ -80,7 +79,7 @@ int     getdata(t_data *data)
     if (!(makemap(data)))
         return (print_return("error making map\n", -1, 2));
     if (!(getgridsize(&(data->piece.y_size), &(data->piece.x_size))))
-        return (print_return("error getting piece size\n", 0, 2));
+        return (print_return("error getting piece size\n", -1, 2));
     if (!(makepiece(data)))
         return (print_return("error making piece\n", -1, 2));
     return (1);

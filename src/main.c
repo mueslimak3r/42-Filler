@@ -83,7 +83,7 @@ int         main(void)
     pinfo = 0;
     if ((get_next_line(0, &pinfo)) < 0)
         return (0);
-    if (!pinfo[10] || (pinfo[10] != '1' && pinfo[10] != '2'))
+    if (ft_strlen(pinfo) < 11 || !pinfo[10] || (pinfo[10] != '1' && pinfo[10] != '2'))
     {
         ft_strdel(&pinfo);
 		return (print_return("error about player position", 0, 2));
