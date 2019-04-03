@@ -17,7 +17,7 @@ void	ft_arraydel(char **array)
 	char	**temp;
 
 	temp = array;
-	while (*temp)
+	while (temp)
 	{
 		ft_strdel(&(*temp));
 		temp++;

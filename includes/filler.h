@@ -36,7 +36,7 @@ typedef struct      s_move
 
 int     getdata(t_data *data);
 int     print_return(char *note, int ret, int fd);
-void    solve(t_data *data);
+int     solve(t_data *data);
 void    printlist(t_move *list);
 void    free_list(t_move **list);
 void    get_moves(t_move **list, t_data *data);

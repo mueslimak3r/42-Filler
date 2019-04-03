@@ -61,17 +61,18 @@ void    printit(char **c)
 int     filler_loop(int playern, char c)
 {
     t_data data;
-    int     ret;
+    int ret;
 
     clearstructs(&data);
-    if ((ret = getdata(&data)) < 1)
-        return(ret);
+    if (getdata(&data) != 1)
+        return(-1);
     data.playern = playern;
     data.c = c;
     //printit(data.map.map);
-    solve(&data);
-    freeit(&data);
-    return (0);
+    if ((ret = solve(&data)) == -1)
+        return (-1);
+    //freeit(&data);
+    return (ret);
 }
 
 int         main(void)

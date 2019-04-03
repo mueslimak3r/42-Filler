@@ -9,7 +9,7 @@ int         checkifswappable(t_move **a, t_move **b)
     return (0);
 }
 
-void        solve(t_data *data)
+int         solve(t_data *data)
 {
     t_move  *list;
 
@@ -19,10 +19,14 @@ void        solve(t_data *data)
     if (list)
     {
         mergesort_moves(&list);
-        while (1)
-            printf("%d %d\n", list->y, list->x);
+        ft_putnbr(list->y);
+        ft_putchar(' ');
+        ft_putnbr(list->x);
+        ft_putchar('\n');
+        free_list(&list);
+        return (1);
     }
     else
-        printf("%d %d\n", 0, 0);
-    free_list(&list);
+        ft_putstr("0 0\n");
+    return (-1);
 }

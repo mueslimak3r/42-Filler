@@ -8,7 +8,7 @@ int     getgridsize(int *y, int *x)
     if ((get_next_line(0, &line)) < 0)
         return (0);
     backup = line;
-    if (line)
+    if (line && ft_strlen(line) > 0)
     {
         //ft_printf("line: %s\n", line);
         while(*line && !ft_isdigit(*line))
@@ -19,6 +19,9 @@ int     getgridsize(int *y, int *x)
         if (!(*(ft_strchr(line, ' '))))
             return (0);
         *x = ft_atoi(ft_strchr(line, ' '));
+        if (!(*x) || !(*y))
+            return (0);
+        ft_strdel(&backup);
         return (1);
     }
     ft_strdel(&backup);
@@ -38,6 +41,8 @@ int     makepiece(t_data *data)
     //ft_printf("piece to place:\n");
     while (y < data->piece.y_size && get_next_line(0, &line) > 0)
     {
+        if ((int)ft_strlen(line) != data->piece.x_size)
+            return (0);
         (data->piece.piece)[y] = ft_strdup(line);
         //ft_printf("y: %-4d | %s\n", y, (data->piece.piece)[y]);
         data->piece.y_begin = (ft_strchr(line, '*') >= line && (y < data->piece.y_begin || data->piece.y_begin == -1)) ?
