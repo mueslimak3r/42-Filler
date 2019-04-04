@@ -73,6 +73,8 @@ int     makemap(t_data *data)
     while (y < data->map.y_size && get_next_line(0, &line) > 0)
     {
         (data->map.map)[y] = ft_strdup(line + 4);
+        if ((int)ft_strlen(data->map.map[y]) != data->map.x_size)
+            return (0);
         ft_strdel(&line);
         y++;
     }
@@ -81,7 +83,7 @@ int     makemap(t_data *data)
 
 int     getdata(t_data *data)
 {
-    if (!(getgridsize(&(data->map.y_size), &(data->map.x_size))))
+    if ((getgridsize(&(data->map.y_size), &(data->map.x_size))) != 1)
         return (-1);
     if (!(makemap(data)))
         return (-1);
