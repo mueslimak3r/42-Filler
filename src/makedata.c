@@ -85,11 +85,11 @@ int     getdata(t_data *data)
 {
     if ((getgridsize(&(data->map.y_size), &(data->map.x_size))) != 1)
         return (-1);
-    if (!(makemap(data)))
+    if ((makemap(data)) != 1)
         return (-1);
-    if (!(getgridsize(&(data->piece.y_size), &(data->piece.x_size))))
+    if ((getgridsize(&(data->piece.y_size), &(data->piece.x_size))) != 1)
         return (-1);
-    if (!(makepiece(data)))
+    if ((makepiece(data)) != 1)
         return (-1);
     return (1);
 }

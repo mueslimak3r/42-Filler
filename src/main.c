@@ -19,6 +19,8 @@ void    freeit(t_data *data)
 {
     ft_arraydel(data->map.map);
     ft_arraydel(data->piece.piece);
+    data->map.map = 0;
+    data->piece.piece = 0;
 }
 
 void    printit(char **c)
@@ -65,13 +67,13 @@ int     filler_loop(int playern, char c)
 
     clearstructs(&data);
     if (getdata(&data) != 1)
-        return(-1);
+        return (-1);
     data.playern = playern;
     data.c = c;
     //printit(data.map.map);
     if ((ret = solve(&data)) == -1)
         return (-1);
-    //freeit(&data);
+    freeit(&data);
     return (ret);
 }
 

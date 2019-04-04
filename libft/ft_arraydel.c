@@ -15,12 +15,17 @@
 void	ft_arraydel(char **array)
 {
 	char	**temp;
+	int		i;
 
+	i = 0;
 	temp = array;
-	while (temp)
+	while (temp[i])
+		i++;
+	while (i > 0 && temp)
 	{
 		ft_strdel(&(*temp));
 		temp++;
+		i--;
 	}
 	if (array)
 		free(array);
