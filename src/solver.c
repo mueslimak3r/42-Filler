@@ -58,7 +58,7 @@ int         checkifrepairsline(t_move *move, t_data *data)
             {
                 if (move->y + by >= data->map.y_size || move->x + bx >= data->map.x_size)
                     return (0);
-                if (checkallsides(data, move->y + by, move->x + bx))
+                if (checkallsides(data, move->y + data->piece.y_begin + by, move->x + data->piece.x_begin + bx))
                     can++;
             }
             bx++;
@@ -80,16 +80,20 @@ int         getpoints(t_move *move, t_data *data)
 
 int         checkifswappable(t_move *a, t_move *b, t_data *data)
 {
+    /*
     if (data)
+    {
         ;
+    }
     if ((a)->x < (b)->x)
         return (1);
     if ((a)->x == (b)->x && (a)->y < (b)->y)
         return (1);
-/*
-   if (get_points(a) > get_points(b))
+    */
+
+   if (getpoints(a, data) > getpoints(b, data))
         return (1);
-*/
+
    return (0);
 }
 
