@@ -29,12 +29,10 @@ void        check_spot(t_move **list, t_data *data, int in_x, int in_y)
         bx = 0;
         while (++x < data->piece.x_size)
         {
-            if (!((data->piece.piece)[x]))
-                return ;
-            if ((data->piece.piece)[y][x] == '*')
+            if ((data->piece.piece)[y][x] && (data->piece.piece)[y][x] == '*')
             {
                 
-                if (in_y + by >= data->map.y_size || in_x + bx >= data->map.x_size)
+                if (in_y + by >= data->map.y_size || in_x + bx >= data->map.x_size || ft_checkifc((data->map.map)[in_y + by][in_x + bx], data->o))
                     return ;
                 if (ft_checkifc((data->map.map)[in_y + by][in_x + bx], data->c))
                     can++;

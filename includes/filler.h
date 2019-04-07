@@ -25,6 +25,7 @@ typedef struct  s_data
     t_piece     piece;
     int         playern;
     char        c;
+    char        o;
 }               t_data;
 
 typedef struct      s_move
