@@ -78,15 +78,21 @@ int         getpoints(t_move *move, t_data *data)
     return (points);
 }
 
-/*int         checkifswappable(t_move **a, t_move **b)
+int         checkifswappable(t_move *a, t_move *b, t_data *data)
 {
-    if ((*a)->x < (*b)->x)
+    if (data)
+        ;
+    if ((a)->x < (b)->x)
         return (1);
-    if ((*a)->x == (*b)->x && (*a)->y < (*b)->y)
+    if ((a)->x == (b)->x && (a)->y < (b)->y)
         return (1);
-    return (0);
-}
+/*
+   if (get_points(a) > get_points(b))
+        return (1);
 */
+   return (0);
+}
+
 
 int         solve(t_data *data)
 {

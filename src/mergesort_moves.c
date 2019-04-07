@@ -9,7 +9,7 @@ t_move		*sortedmerge_list(t_move *a, t_move *b, t_data *data)
 		return (b);
 	else if (b == NULL)
 		return (a);
-	if (getpoints(a, data) > getpoints(b, data))
+	if (checkifswappable(a, b, data))
 	{
 		result = a;
 		result->next = sortedmerge_list(a->next, b, data);
