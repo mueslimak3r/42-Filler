@@ -1,11 +1,5 @@
 #include "../includes/filler.h"
 
-int     print_return(char *note, int ret, int fd)
-{
-    ft_putstr_fd(note, fd);
-    return (ret);
-}
-
 void    clearstructs(t_data *data)
 {
     ft_memset(data, 0, sizeof(t_data));
@@ -30,7 +24,7 @@ void    printit(char **c)
     int b;
     int y;
     y = -1;
-    size = ft_strlen(*c);
+    size = (int)ft_strlen(*c);
     ft_printf("map to fill:\n    ");
     while(i < size)
     {
@@ -70,7 +64,7 @@ int     filler_loop(int playern, char c)
         return (-1);
     data.playern = playern;
     data.c = c;
-    //printit(data.map.map);
+    printit(data.map.map);
     if ((ret = solve(&data)) == -1)
         return (-1);
     freeit(&data);
@@ -95,6 +89,6 @@ int         main(void)
     ft_strdel(&pinfo);
     quit = 0;
     while (quit != -1)
-        quit = filler_loop(playern, (playern == 1) ? 'o' : 'x');
-    return (quit == -1 ? 1 : 0);
+        quit = filler_loop(playern, ((playern == 1) ? 'o' : 'x'));
+    return (0);
 }

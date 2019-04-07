@@ -27,8 +27,10 @@ void        check_spot(t_move **list, t_data *data, int in_x, int in_y)
     {
         x = data->piece.x_begin -1;
         bx = 0;
-        while (x + 1 < data->piece.x_size && (data->piece.piece)[++x])
+        while (++x < data->piece.x_size)
         {
+            if (!((data->piece.piece)[x]))
+                return ;
             if ((data->piece.piece)[y][x] == '*')
             {
                 

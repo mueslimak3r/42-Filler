@@ -10,7 +10,7 @@ int     getgridsize(int *y, int *x)
     backup = line;
     if (line && ft_strlen(line) > 0)
     {
-        //ft_printf("line: %s\n", line);
+        ft_printf("line: %s\n", line);
         while(*line && !ft_isdigit(*line))
             line++;
         if (!(*line))
@@ -38,17 +38,17 @@ int     makepiece(t_data *data)
     if (!(data->piece.piece = ft_memalloc(sizeof(char*) *
                         (data->piece.y_size + 1))))
         return (0);
-    //ft_printf("piece to place:\n");
+    ft_printf("piece to place:\n");
     while (y < data->piece.y_size && get_next_line(0, &line) > 0)
     {
         if ((int)ft_strlen(line) != data->piece.x_size)
             return (0);
         (data->piece.piece)[y] = ft_strdup(line);
-        //ft_printf("y: %-4d | %s\n", y, (data->piece.piece)[y]);
+        ft_printf("y: %-4d | %s\n", y, (data->piece.piece)[y]);
         data->piece.y_begin = (ft_strchr(line, '*') >= line && (y < data->piece.y_begin || data->piece.y_begin == -1)) ?
                                 y : data->piece.y_begin;
         data->piece.x_begin = (ft_strchr(line, '*') >= line && ((ft_strchr(line, '*') - line) < data->piece.x_begin || data->piece.x_begin == -1)) ?
-                                (ft_strchr(line, '*') - line) : data->piece.x_begin;
+                              (int)(ft_strchr(line, '*') - line) : data->piece.x_begin;
         y++;
         ft_strdel(&line);
     }
@@ -66,7 +66,7 @@ int     makemap(t_data *data)
     if (!(data->map.map = ft_memalloc(sizeof(char*) *
                         (data->map.y_size + 1))))
         return (0);
-    //ft_printf("size: x: %d y: %d\n", data->map.x_size, data->map.y_size);
+    ft_printf("size: x: %d y: %d\n", data->map.x_size, data->map.y_size);
     if ((get_next_line(0, &line)) < 0)
         return (0);
     ft_strdel(&line);
