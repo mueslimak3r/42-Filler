@@ -44,5 +44,6 @@ void    get_moves(t_move **list, t_data *data);
 void    mergesort_moves(t_move **list, t_data *data);
 int     getpoints(t_move *move, t_data *data);
 int     checkifswappable(t_move *a, t_move *b, t_data *data);
+int     checkifrepairsline(t_move *move, t_data *data);
 
 #endif

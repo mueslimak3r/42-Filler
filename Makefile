@@ -12,7 +12,7 @@
 
 NAME = calamber
 
-SRC = main.c makedata.c solver.c makelist.c mergesort_moves.c
+SRC = main.c makedata.c solver.c makelist.c mergesort_moves.c linedefence.c
 
 OBJ = $(SRC:.c=.o)
 
