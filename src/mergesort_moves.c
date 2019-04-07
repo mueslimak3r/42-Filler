@@ -1,6 +1,6 @@
 #include "../includes/filler.h"
 
-t_move		*sortedmerge_list(t_move *a, t_move *b)
+t_move		*sortedmerge_list(t_move *a, t_move *b, t_data *data)
 {
 	t_move	*result;
 
@@ -9,15 +9,15 @@ t_move		*sortedmerge_list(t_move *a, t_move *b)
 		return (b);
 	else if (b == NULL)
 		return (a);
-	if (checkifswappable(&a, &b))
+	if (getpoints(a, data) > getpoints(b, data))
 	{
 		result = a;
-		result->next = sortedmerge_list(a->next, b);
+		result->next = sortedmerge_list(a->next, b, data);
 	}
 	else
 	{
 		result = b;
-		result->next = sortedmerge_list(a, b->next);
+		result->next = sortedmerge_list(a, b->next, data);
 	}
 	return (result);
 }
@@ -43,7 +43,7 @@ void		fbsplit_list(t_move *source, t_move **frontref, t_move **backref)
 	slow->next = NULL;
 }
 
-void        mergesort_moves(t_move **list)
+void        mergesort_moves(t_move **list, t_data *data)
 {
 	t_move	*head;
 	t_move	*a;
@@ -53,7 +53,7 @@ void        mergesort_moves(t_move **list)
 	if ((head == NULL) || (head->next == NULL))
 		return ;
 	fbsplit_list(head, &a, &b);
-	mergesort_moves(&a);
-	mergesort_moves(&b);
-	*list = sortedmerge_list(a, b);
+	mergesort_moves(&a, data);
+	mergesort_moves(&b, data);
+	*list = sortedmerge_list(a, b, data);
 }
