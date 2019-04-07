@@ -15,6 +15,8 @@ int         checkheat(move)
 
 int         checkallsides(t_data *data, int x, int y)
 {
+    if (x >= data->map.x_size || y >= data->map.y_size)
+        return (0);
     if (x + 2 < data->map.x_size && ft_checkifc(data->map.map[y][x + 1], data->c) && data->map.map[y][x + 2] == '.')
         return (1);
     else if (x - 2 >= 0 && ft_checkifc(data->map.map[y][x - 1], data->c) && data->map.map[y][x - 2] == '.')
@@ -56,7 +58,7 @@ int         checkifrepairsline(t_move *move, t_data *data)
         {
             if ((data->piece.piece)[y][x] && (data->piece.piece)[y][x] == '*')
             {
-                if (move->y + by >= data->map.y_size || move->x + bx >= data->map.x_size)
+                if (move->y + data->piece.y_begin + by >= data->map.y_size || move->x + data->piece.x_begin + bx >= data->map.x_size)
                     return (0);
                 if (checkallsides(data, move->y + data->piece.y_begin + by, move->x + data->piece.x_begin + bx))
                     can++;
