@@ -66,8 +66,7 @@ int     filler_loop(int playern, char c)
     data.c = c;
     data.o = (data.c == 'o') ? 'x' : 'o';
     //printit(data.map.map);
-    if ((ret = solve(&data)) == -1)
-        return (-1);
+    ret = solve(&data);
     freeit(&data);
     return (ret);
 }
