@@ -31,14 +31,13 @@ int         checkheat(t_move *move, t_data *data)
 
     top = 0;
     top = checkvector(1, 0, move, data) > top ? checkvector(1, 0, move, data) : top;
-    top = checkvector(-1, 0, move, data) > top ? checkvector(1, 0, move, data) : top;
-    top = checkvector(0, 1, move, data) > top ? checkvector(1, 0, move, data) : top;
-    top = checkvector(0, -1, move, data) > top ? checkvector(1, 0, move, data) : top;
-    top = checkvector(-1, -1, move, data) > top ? checkvector(1, 0, move, data) : top;
-    top = checkvector(1, -1, move, data) > top ? checkvector(1, 0, move, data) : top;
-    top = checkvector(-1, 1, move, data) > top ? checkvector(1, 0, move, data) : top;
-    top = checkvector(1, 1, move, data) > top ? checkvector(1, 0, move, data) : top;
-    ft_printf("move: y: %d x: %d | top: %d\n", move->y, move->x, top);
+    top = checkvector(-1, 0, move, data) > top ? checkvector(-1, 0, move, data) : top;
+    top = checkvector(0, 1, move, data) > top ? checkvector(0, 1, move, data) : top;
+    top = checkvector(0, -1, move, data) > top ? checkvector(0, -1, move, data) : top;
+    top = checkvector(-1, -1, move, data) > top ? checkvector(-1, -1, move, data) : top;
+    top = checkvector(1, -1, move, data) > top ? checkvector(1, -1, move, data) : top;
+    top = checkvector(-1, 1, move, data) > top ? checkvector(-1, 1, move, data) : top;
+    top = checkvector(1, 1, move, data) > top ? checkvector(1, 1, move, data) : top;
     return (top);
 }
 
@@ -57,11 +56,14 @@ int         checkifswappable(t_move *a, t_move *b, t_data *data)
     */
     //if (heat(a) < heat(b) && checkifrepairsline(a, data))
     //        return (1);
-    if (checkheat(a, data) < checkheat(b, data))
+    if (checkheat(a, data) > checkheat(b, data))
     {
-        if (checkifrepairsline(a, data))
-            return (1);
         return (1);
+    }
+    else if (checkheat(a, data) < checkheat(b, data))
+    {
+        if (checkifrepairsline(a, data) > 2)
+            return (1);
     }
     return (0);
 }
