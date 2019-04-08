@@ -71,14 +71,3 @@ void        free_list(t_move **list)
         free(temp);
     }
 }
-
-void        printlist(t_move *list)
-{
-    ft_printf("sorted list of valid moves:\n");
-    while (list)
-    {
-        ft_printf("x: %d y: %d\n", list->x, list->y);
-        list = list->next;
-    }
-    ft_printf("chosen move:\n");
-}
