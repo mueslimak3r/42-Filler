@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   mergesort_moves.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: calamber <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/04/07 23:26:38 by calamber          #+#    #+#             */
+/*   Updated: 2019/04/07 23:26:58 by calamber         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/filler.h"
 
 t_move		*sortedmerge_list(t_move *a, t_move *b, t_data *data)
@@ -9,7 +21,7 @@ t_move		*sortedmerge_list(t_move *a, t_move *b, t_data *data)
 		return (b);
 	else if (b == NULL)
 		return (a);
-	if (checkifswappable(a, b, data))
+	if (checkorder(a, b, data))
 	{
 		result = a;
 		result->next = sortedmerge_list(a->next, b, data);
@@ -43,7 +55,7 @@ void		fbsplit_list(t_move *source, t_move **frontref, t_move **backref)
 	slow->next = NULL;
 }
 
-void        mergesort_moves(t_move **list, t_data *data)
+void		mergesort_moves(t_move **list, t_data *data)
 {
 	t_move	*head;
 	t_move	*a;
