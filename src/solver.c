@@ -92,7 +92,7 @@ int			get_points(t_move *one, t_move *two, t_data *data)
 			points += 40;
 	}
 	if (checkifrepairsline(one, data) > 2)
-		points += 15;
+		points += 5;
 	if (canbreakthrough(one, data))
 		points += 200;
 	return (points);
