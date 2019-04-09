@@ -23,7 +23,7 @@ int			getgridsize(int *y, int *x)
 	backup = line;
 	if (line && ft_strlen(line) > 0)
 	{
-		while(*line && !ft_isdigit(*line))
+		while (*line && !ft_isdigit(*line))
 			line++;
 		if (!(*line))
 			return (0);
@@ -40,25 +40,28 @@ int			getgridsize(int *y, int *x)
 	return (0);
 }
 
-int			makepiece(t_data *data)
+int			makepiece(t_data *d)
 {
 	char	*line;
 	int		y;
 
 	line = 0;
 	y = 0;
-	if (!(data->piece.piece = ft_memalloc(sizeof(char*) *
-						(data->piece.y_size + 1))))
+	if (!(d->piece.piece = ft_memalloc(sizeof(char*) *
+						(d->piece.y_size + 1))))
 		return (0);
-	while (y < data->piece.y_size && get_next_line(0, &line) > 0)
+	while (y < d->piece.y_size && get_next_line(0, &line) > 0)
 	{
-		if ((int)ft_strlen(line) != data->piece.x_size)
+		if ((int)ft_strlen(line) != d->piece.x_size)
 			return (0);
-		(data->piece.piece)[y] = ft_strdup(line);
-		data->piece.y_begin = (ft_strchr(line, '*') >= line && (y < data->piece.y_begin || data->piece.y_begin == -1)) ?
-								y : data->piece.y_begin;
-		data->piece.x_begin = (ft_strchr(line, '*') >= line && ((ft_strchr(line, '*') - line) < data->piece.x_begin || data->piece.x_begin == -1)) ?
-								(int)(ft_strchr(line, '*') - line) : data->piece.x_begin;
+		(d->piece.piece)[y] = ft_strdup(line);
+		d->piece.y_begin = (ft_strchr(line, '*') >= line && (y <
+		d->piece.y_begin || d->piece.y_begin == -1)) ?
+		y : d->piece.y_begin;
+		d->piece.x_begin = (ft_strchr(line, '*') >= line &&
+		((ft_strchr(line, '*') - line) < d->piece.x_begin
+		|| d->piece.x_begin == -1)) ?
+		(int)(ft_strchr(line, '*') - line) : d->piece.x_begin;
 		y++;
 		ft_strdel(&line);
 	}

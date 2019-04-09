@@ -12,7 +12,8 @@
 
 NAME = calamber
 
-SRC = main.c makedata.c solver.c makemovelist.c mergesort_moves.c linedefence.c
+SRC = main.c makedata.c solver.c makemovelist.c mergesort_moves.c \
+	linedefence.c miscmapchecks.c
 
 OBJ = $(SRC:.c=.o)
 
@@ -24,7 +25,7 @@ INC = -I includes
 
 CC = gcc
 
-FLAGS = -Wall -Wextra -Werror -g -fsanitize=address
+FLAGS = -Wall -Wextra -Werror
 
 all: $(NAME)
 

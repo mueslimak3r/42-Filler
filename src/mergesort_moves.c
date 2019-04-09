@@ -21,7 +21,7 @@ t_move		*sortedmerge_list(t_move *a, t_move *b, t_data *data)
 		return (b);
 	else if (b == NULL)
 		return (a);
-	if (checkorder(a, b, data))
+	if (get_points(a, b, data) > get_points(b, a, data))
 	{
 		result = a;
 		result->next = sortedmerge_list(a->next, b, data);

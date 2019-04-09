@@ -24,7 +24,7 @@ void		add_node(t_move **list, int x, int y)
 	*list = new;
 }
 
-void		check_spot(t_move **list, t_data *data, int in_x, int in_y)
+void		check_spot(t_move **list, t_data *d, int nx, int ny)
 {
 	int		can;
 	int		x;
@@ -32,31 +32,25 @@ void		check_spot(t_move **list, t_data *data, int in_x, int in_y)
 	int		bx;
 	int		by;
 
-	by = 0;
+	by = -1;
 	can = 0;
-	y = data->piece.y_begin - 1;
-	while (y + 1 < data->piece.y_size && (data->piece.piece)[++y])
+	y = d->piece.y_begin - 1;
+	while (y + 1 < d->piece.y_size && (d->piece.piece)[++y] && ++by > -1)
 	{
-		x = data->piece.x_begin - 1;
-		bx = 0;
-		while (++x < data->piece.x_size)
-		{
-			if ((data->piece.piece)[y][x] && (data->piece.piece)[y][x] == '*')
+		x = d->piece.x_begin - 1;
+		bx = -1;
+		while (++x < d->piece.x_size && ++bx > -1)
+			if ((d->piece.piece)[y][x] && (d->piece.piece)[y][x] == '*')
 			{
-				if (in_y + by >= data->map.y_size || in_x + bx >=
-						data->map.x_size ||
-						ft_checkifc((data->map.map)[in_y + by]
-							[in_x + bx], data->o))
+				if (ny + by >= d->map.y_size || nx + bx >= d->map.x_size
+				|| ft_checkifc((d->map.map)[ny + by][nx + bx], d->o))
 					return ;
-				if (ft_checkifc((data->map.map)[in_y + by][in_x + bx], data->c))
+				if (ft_checkifc((d->map.map)[ny + by][nx + bx], d->c))
 					can++;
 			}
-			bx++;
-		}
-		by++;
 	}
-	if (can == 1)
-		add_node(list, in_x - data->piece.x_begin, in_y - data->piece.y_begin);
+	(can == 1) ? add_node(list, nx -
+	d->piece.x_begin, ny - d->piece.y_begin) : 0;
 }
 
 void		get_moves(t_move **list, t_data *data)
