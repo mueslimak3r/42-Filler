@@ -1,5 +1,5 @@
 # 42-Filler
-A bot that can play the 42's version of the game Blokus.
+A bot that can play 42's version of the game Blokus.
 
 <img src="https://raw.githubusercontent.com/BenjaminSouchet/Filler_Visualizer/master/visualizer/assets/images/visualizer.gif"/>
 
