@@ -10,7 +10,7 @@
 #                                                                              #
 # **************************************************************************** #
 
-NAME = calamber
+NAME = calamber.filler
 
 SRC = main.c makedata.c solver.c makemovelist.c mergesort_moves.c \
 	linedefence.c miscmapchecks.c
